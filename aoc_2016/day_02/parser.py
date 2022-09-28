@@ -1,4 +1,5 @@
 from typing import Optional, Sequence
+
 from .shared import Direction, Instruction
 
 
@@ -28,7 +29,7 @@ class Parser(object):
 
     @staticmethod
     def parse_pad(input: str) -> dict[tuple[int, int], str]:
-        lines = input.strip().splitlines()
+        lines = [line for line in input.splitlines() if line]
         line_chars = [Parser.parse_pad_line(line) for line in lines]
         output: dict[tuple[int, int], str] = {}
         for y, row in enumerate(line_chars):
