@@ -5,18 +5,22 @@ from aoc_2016.day_01.shared import Day01Solver
 
 
 @dataclass
-class Day01PartASolver(Day01Solver):
+class Day01PartBSolver(Day01Solver):
     @property
     def solution(self) -> int:
-        x, y = 0, 0
-        for i, j in self.get_positions():
-            x, y = i, j
-        return self.position_to_dist(x, y)
+        visited: set[tuple[int, int]] = set()
+        for pos in self.get_positions():
+            if pos in visited:
+                x, y = pos
+                return self.position_to_dist(x, y)
+            else:
+                visited.add(pos)
+        assert False, "We can't get here!"
 
 
 def solve(input: str) -> int:
     data = Parser.parse(input)
-    solver = Day01PartASolver(data)
+    solver = Day01PartBSolver(data)
 
     return solver.solution
 
