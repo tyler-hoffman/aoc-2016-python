@@ -1,6 +1,5 @@
 import argparse
 import subprocess
-from typing import Literal, Union
 
 import aocd
 
